@@ -5,24 +5,31 @@
 def order(values: list = None) -> list:
     if values is None:
         # TODO: demander les valeurs ici
-        pass
+        values = []
+        while len(values) < 10:
+            values.append(input("Entrer une seule valeur :"))
+    values.sort()
 
-    return []
+    print(values)
+    return values
 
 
 def anagrams(words: list = None) -> bool:
     if words is None:
         # TODO: demander les mots ici
-        pass
-
-    return False
+        words = [input() for i in range(2)]
+    return sorted(words[0]) == sorted(words[1])
 
 
 def contains_doubles(items: list) -> bool:
+    for i in range(len(items)):
+        if items[i] in items[i + 1:]:
+            return True
     return False
 
 
 def best_grades(student_grades: dict) -> dict:
+    moyenne = sum(student_grades) / len(student_grades)
     # TODO: Retourner un dictionnaire contenant le nom de l'étudiant ayant la meilleure moyenne ainsi que sa moyenne
     return {}
 
@@ -46,12 +53,12 @@ def print_recipe(ingredients) -> None:
 
 def main() -> None:
     print(f"On essaie d'ordonner les valeurs...")
-    order()
+    #order()
 
     print(f"On vérifie les anagrammes...")
-    anagrams()
+    #print(anagrams())
 
-    my_list = [3, 3, 5, 6, 1, 1]
+    my_list = [2, 3, 5, 6, 4, 1]
     print(f"Ma liste contient-elle des doublons? {contains_doubles(my_list)}")
 
     grades = {"Bob": [90, 65, 20], "Alice": [85, 75, 83]}
