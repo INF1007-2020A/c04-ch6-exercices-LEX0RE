@@ -40,41 +40,42 @@ def best_grades(student_grades: dict) -> dict:
 def frequence(sentence: str) -> dict:
     # TODO: Afficher les lettres les plus fréquentes
     #       Retourner le tableau de lettres
-    letters = dict()
-    lastLetters = ""
-    freq = 0
-    for i in sorted(sentence):
-        if lastLetters != i:
-            lastLetters = i
-            freq = 0
-        elif lastLetters == i:
-            freq += 1
-        if freq >= 5 or len(letters) == 0:
-            letters[i] = freq
-    
-    print(letters)
-    return {}
+    frequency = dict()
+    for key in sentence:
+        frequency[key] = sentence.count(key)
+    sorted_keys = sorted(frequency, key=frequency.__getitem__, reverse=True)
+    for key in sorted_keys:
+        if sentence.count(key) >= 5:
+            print(f"Le caractère {key} revient {frequency[key]} fois")
+    return frequency
 
 
 def get_recipes():
+    key = input("Entrer le nom de la recette : ")
+    item = input("Entrer la liste d'item séparés par des espaces : ")
+    list_items = item.split()
+    recipe_book = {key: list_items}
     # TODO: Demander le nom d'une recette, puis ses ingredients et enregistrer dans une structure de données
-    pass
+    return recipe_book
 
 
 def print_recipe(ingredients) -> None:
     # TODO: Demander le nom d'une recette, puis l'afficher si elle existe
+    key = input("Entrer le nom de la recette à regarder : ")
+    if key in ingredients:
+        print(ingredients[key])
     pass
 
 
 def main() -> None:
     print(f"On essaie d'ordonner les valeurs...")
-    #order()
+    order()
 
     print(f"On vérifie les anagrammes...")
-    #print(anagrams())
+    print(anagrams())
 
     my_list = [2, 2, 5, 6, 1, 1]
-    #print(f"Ma liste contient-elle des doublons? {contains_doubles(my_list)}")
+    print(f"Ma liste contient-elle des doublons? {contains_doubles(my_list)}")
 
     grades = {"Bob": [90, 65, 20], "Alice": [85, 75, 83]}
     best_student = best_grades(grades)
