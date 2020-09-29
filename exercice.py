@@ -29,15 +29,30 @@ def contains_doubles(items: list) -> bool:
 
 
 def best_grades(student_grades: dict) -> dict:
-    moyenne = sum(student_grades) / len(student_grades)
+    best = dict()
+    for key, value in student_grades.items():
+        if len(best) == 0 or (sum(value) / len(value)) > list(best.values())[0]:
+            best = {key:sum(value) / len(value)}
     # TODO: Retourner un dictionnaire contenant le nom de l'étudiant ayant la meilleure moyenne ainsi que sa moyenne
-    return {}
+    return best
 
 
 def frequence(sentence: str) -> dict:
     # TODO: Afficher les lettres les plus fréquentes
     #       Retourner le tableau de lettres
-
+    letters = dict()
+    lastLetters = ""
+    freq = 0
+    for i in sorted(sentence):
+        if lastLetters != i:
+            lastLetters = i
+            freq = 0
+        elif lastLetters == i:
+            freq += 1
+        if freq >= 5 or len(letters) == 0:
+            letters[i] = freq
+    
+    print(letters)
     return {}
 
 
@@ -58,8 +73,8 @@ def main() -> None:
     print(f"On vérifie les anagrammes...")
     #print(anagrams())
 
-    my_list = [2, 3, 5, 6, 4, 1]
-    print(f"Ma liste contient-elle des doublons? {contains_doubles(my_list)}")
+    my_list = [2, 2, 5, 6, 1, 1]
+    #print(f"Ma liste contient-elle des doublons? {contains_doubles(my_list)}")
 
     grades = {"Bob": [90, 65, 20], "Alice": [85, 75, 83]}
     best_student = best_grades(grades)
